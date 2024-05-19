@@ -11,6 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs');
 
+app.set("views", "views");
+
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -61,6 +63,6 @@ app.get('/uts', async (req, res) => {
   }
 });
 
-app.listen(port2, () => {
-  console.log(`Listening on http://localhost:${port2}`);
+app.listen(port, () => {
+  console.log(`Listening on http://localhost:${port}`);
 })
