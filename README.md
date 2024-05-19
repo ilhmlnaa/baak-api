@@ -7,8 +7,8 @@
 
 | Endpoints    | Params | Type  | Description            |
 | ------------ | ----- | ----- | ---------------------- |
-| `/api/matkul`| kelas | route | Get data |
-| `/api/uts`| kelas | route | Get data |
+| `/matkul`| kelas | route | Get data |
+| `/uts`| kelas | route | Get data |
 
 ## Example Output
 ```
