@@ -5,6 +5,7 @@ const jadwalUts = require('./jadwalUts');
 const app = express();
 
 const port = parseInt(process.env.PORT) || process.argv[3] || 8080;
+const port2 = 3000
 
 app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -60,6 +61,6 @@ app.get('/uts', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+app.listen(port2, () => {
+  console.log(`Listening on http://localhost:${port2}`);
 })
