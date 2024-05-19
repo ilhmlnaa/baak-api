@@ -15,14 +15,14 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/matkul:data', async (req, res) => { 
-  const data = req.params.data; 
+app.get('/matkul', async (req, res) => { 
+  const kelas = req.query.kelas.split('?')[0];  
   
-  if (!data) {
+  if (!kelas) {
     return res.status(400).json({ error: 'Parameter data diperlukan.' });
   }
   
-  const url = `https://baak.gunadarma.ac.id/jadwal/cariJadKul?teks=${data}`;
+  const url = `https://baak.gunadarma.ac.id/jadwal/cariJadKul?teks=${kelas}`;
   try {
     const fetchApi = await jadwalMatkul(url); 
 
@@ -37,14 +37,14 @@ app.get('/matkul:data', async (req, res) => {
   }
 });
 
-app.get('/uts:data', async (req, res) => { 
-  const data = req.params.data; 
+app.get('/uts', async (req, res) => { 
+  const kelas = req.query.kelas.split('?')[0]; ; 
   
-  if (!data) {
+  if (!kelas) {
     return res.status(400).json({ error: 'Parameter data diperlukan.' });
   }
   
-  const url = `https://baak.gunadarma.ac.id/jadwal/cariUts?teks=${data}`;
+  const url = `https://baak.gunadarma.ac.id/jadwal/cariUts?teks=${kelas}`;
   
   try {
     const fetchApi = await jadwalUts(url); 
