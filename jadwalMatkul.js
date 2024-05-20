@@ -9,30 +9,40 @@ async function jadwalMatkul(url) {
 
     const tabelJadwal = $('table.table-custom');
     if (tabelJadwal.length) {
-      const rows = tabelJadwal.find('tr').slice(1);
+      const rows = tabelJadwal.find('tr').slice(1); // Skip header row
 
       rows.each((index, row) => {
         const kolom = $(row).find('td');
+        if (kolom.length < 5) return; // Ensure there are enough columns
+
         const hari = $(kolom[1]).text().trim();
         const mataKuliah = $(kolom[2]).text().trim();
         const waktu = $(kolom[3]).text().trim();
         const ruang = $(kolom[4]).text().trim();
         const dosen = $(kolom[5]).text().trim();
 
-        if (kolom.length < 5 || !kolom[0].children.length) {
-            return;
-          }
+        const mataKuliahObj = {
+          mataKuliah: mataKuliah,
+          waktu: waktu,
+          ruang: ruang,
+          dosen: dosen
+        };
 
         if (!jadwal[hari]) {
           jadwal[hari] = [];
         }
 
-        jadwal[hari].push({
-          mataKuliah: mataKuliah,
-          waktu: waktu,
-          ruang: ruang,
-          dosen: dosen
-        });
+        // Check if the entry already exists
+        const exists = jadwal[hari].some(item =>
+          item.mataKuliah === mataKuliahObj.mataKuliah &&
+          item.waktu === mataKuliahObj.waktu &&
+          item.ruang === mataKuliahObj.ruang &&
+          item.dosen === mataKuliahObj.dosen
+        );
+
+        if (!exists) {
+          jadwal[hari].push(mataKuliahObj);
+        }
       });
     }
 
