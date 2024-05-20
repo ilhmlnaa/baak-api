@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path')
+const app = express();
 const jadwalMatkul = require("./jadwalMatkul");
 const jadwalUts = require('./jadwalUts');
-const app = express();
+const response = require('./response')
 
 const port = parseInt(process.env.PORT) || process.argv[3] || 8080;
-const port2 = 3000
 
 app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -14,9 +14,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine','ejs'); 
 app.engine('ejs', require('ejs').__express);
 
+
 app.get('/', (req, res) => {
   res.render('index');
 });
+
 
 
 app.get('/matkul', async (req, res) => { 
@@ -40,6 +42,7 @@ app.get('/matkul', async (req, res) => {
     res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data.' });
   }
 });
+
 
 app.get('/uts', async (req, res) => { 
   const kelas = req.query.kelas.split('?')[0]; ; 
