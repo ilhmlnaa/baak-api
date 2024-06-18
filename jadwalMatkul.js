@@ -9,11 +9,11 @@ async function jadwalMatkul(url) {
 
     const tabelJadwal = $('table.table-custom');
     if (tabelJadwal.length) {
-      const rows = tabelJadwal.find('tr').slice(1); // Skip header row
+      const rows = tabelJadwal.find('tr').slice(1);
 
       rows.each((index, row) => {
         const kolom = $(row).find('td');
-        if (kolom.length < 5) return; // Ensure there are enough columns
+        if (kolom.length < 5) return;
 
         const hari = $(kolom[1]).text().trim();
         const mataKuliah = $(kolom[2]).text().trim();
@@ -32,7 +32,6 @@ async function jadwalMatkul(url) {
           jadwal[hari] = [];
         }
 
-        // Check if the entry already exists
         const exists = jadwal[hari].some(item =>
           item.mataKuliah === mataKuliahObj.mataKuliah &&
           item.waktu === mataKuliahObj.waktu &&
