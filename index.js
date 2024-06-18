@@ -26,7 +26,7 @@ app.get("/matkul", async (req, res) => {
     return response(400, "Parameter Kelas Diperlukan!", "Error", res);
   }
 
-  const url = `https://baak.gunadarma.ac.id/jadwal/cariJadKul?teks=${kelas}`;
+  const url = `http://baak.gunadarma.ac.id/jadwal/cariJadKul?teks=${kelas}`;
   try {
     const fetchApi = await jadwalMatkul(url);
 
@@ -48,7 +48,7 @@ app.get("/uts", async (req, res) => {
     return response(400, "Parameter Kelas Diperlukan!", "Error", res);
   }
 
-  const url = `https://baak.gunadarma.ac.id/jadwal/cariUts?teks=${kelas}`;
+  const url = `http://baak.gunadarma.ac.id/jadwal/cariUts?teks=${kelas}`;
 
   try {
     const fetchApi = await jadwalUts(url);
